@@ -11,4 +11,5 @@ class Movies extends Model
     public $primaryKey = 'id';
     public $timestamps = true;
 }
+
 Movies::all();
