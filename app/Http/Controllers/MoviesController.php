@@ -14,7 +14,7 @@ class MoviesController extends Controller
      */
     public function index()
     {
-        $movies = Movies::all();
+        $movies = Movies::orderBy('created_at', 'asc')->paginate(10);
         return view('movies.index')->with('movies', $movies);
     }
 
@@ -25,7 +25,7 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        //
+        return view('movies.create');
     }
 
     /**
@@ -36,7 +36,23 @@ class MoviesController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'yearOfProduction' => 'required',
+            'producer' => 'required',
+            'genre' => 'required',
+            'language' => 'required'
+        ]);
+
+        $movies = new Movies;
+        $movies->name = $request->input('name');
+        $movies->yearOfProduction = $request->input('yearOfProduction');
+        $movies->producer = $request->input('producer');
+        $movies->genre = $request->input('genre');
+        $movies->language = $request->input('language');
+        $movies->save();
+
+        return redirect('/movies')->with('success', 'Movie created');
     }
 
     /**
@@ -47,7 +63,8 @@ class MoviesController extends Controller
      */
     public function show($id)
     {
-        //
+        $movies = Movies::find($id);
+        return view('movies.show')->with('movie', $movies);
     }
 
     /**
@@ -58,7 +75,8 @@ class MoviesController extends Controller
      */
     public function edit($id)
     {
-        //
+        $movies = Movies::find($id);
+        return view('movies.edit')->with('movie', $movies);
     }
 
     /**
@@ -70,7 +88,23 @@ class MoviesController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'yearOfProduction' => 'required',
+            'producer' => 'required',
+            'genre' => 'required',
+            'language' => 'required'
+        ]);
+
+        $movies = Movies::find($id);
+        $movies->name = $request->input('name');
+        $movies->yearOfProduction = $request->input('yearOfProduction');
+        $movies->producer = $request->input('producer');
+        $movies->genre = $request->input('genre');
+        $movies->language = $request->input('language');
+        $movies->save();
+
+        return redirect('/movies')->with('success', 'Movie updated');
     }
 
     /**
@@ -81,6 +115,8 @@ class MoviesController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $movies = Movies::find($id);
+        $movies->delete();
+        return redirect('/movies')->with('success', 'Movie Updated');
     }
 }

@@ -11,8 +11,14 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'PagesController@index');
+Route::get('/about', 'PagesController@about');
+
+Auth::routes();
 
 Route::resource('movies', 'MoviesController');
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+
+

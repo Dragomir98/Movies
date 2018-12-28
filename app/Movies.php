@@ -13,3 +13,5 @@ class Movies extends Model
 }
 
 Movies::all();
+
+
