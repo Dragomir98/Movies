@@ -6,7 +6,7 @@
         @foreach($movies as $movie)
             <div class="well">
                 <h3><a href="/movies/{{$movie->id}}">{{$movie->name}}</a></h3>
-                <small>Written on {{$movie->created_at}}</small>
+                <small>Written on {{$movie->created_at}} by {{$movie->user->name}}</small>
             </div>
         @endforeach
         {{$movies->links()}}

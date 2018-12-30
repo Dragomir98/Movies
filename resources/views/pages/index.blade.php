@@ -1,7 +1,8 @@
-<?php
-/**
- * Created by PhpStorm.
- * User: HP
- * Date: 27.12.2018 г.
- * Time: 13:36 ч.
- */
+@extends('layouts.app')
+
+@section('content')
+    <div class="jumbotron text-center">
+        <h1>Welcome</h1>
+        <p><a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> <a class="btn btn-success btn-lg" href="/reguster" role="button">Register</a></p>
+    </div>
+@endsection

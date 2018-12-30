@@ -8,6 +8,16 @@ use App\Movies;
 class MoviesController extends Controller
 {
     /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('auth', ['except' => ['index', 'show']]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -50,6 +60,7 @@ class MoviesController extends Controller
         $movies->producer = $request->input('producer');
         $movies->genre = $request->input('genre');
         $movies->language = $request->input('language');
+        $movies->user_id = auth()->user()->id;
         $movies->save();
 
         return redirect('/movies')->with('success', 'Movie created');
@@ -76,6 +87,10 @@ class MoviesController extends Controller
     public function edit($id)
     {
         $movies = Movies::find($id);
+        if(auth()->user()->id !==$movies->user_id)
+        {
+            return redirect('/movies')->with('error', 'Unauthorized Page');
+        }
         return view('movies.edit')->with('movie', $movies);
     }
 
@@ -116,7 +131,13 @@ class MoviesController extends Controller
     public function destroy($id)
     {
         $movies = Movies::find($id);
+
+        if(auth()->user()->id !==$movies->user_id)
+        {
+            return redirect('/movies')->with('error', 'Unauthorized Page');
+        }
+
         $movies->delete();
-        return redirect('/movies')->with('success', 'Movie Updated');
+        return redirect('/movies')->with('success', 'Movie Deleted');
     }
 }
