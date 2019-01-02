@@ -19,23 +19,60 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+        *{font-family: Convergence;}
+
         h1
         {
-            padding-top: 30px;
+            padding-top: 40px;
         }
 
-        a
+        small
         {
-            color: #2b2c2d;
+            color: #494a4c;
         }
 
-        .well
+        .cont
         {
-            background: -webkit-linear-gradient(top, #ebf1f6 0%,#abd3ee 50%,#89c3eb 51%,#d5ebfb 100%);
-            border: 2px solid #5b5e63;
-            border-radius: 3px;
+            float: right;
+        }
+
+        .resp
+        {
+            border-radius: 5px;
+            width: 100%;
+            max-width: 300px;
+            height: auto;
+        }
+
+        .idx
+        {
+            background: -webkit-linear-gradient(top, rgba(176,212,227,1) 0%,rgba(136,186,207,1) 100%);
+            border: 1px solid #767a82;
+            border-radius: 2px;
             margin: 20px;
             padding: 5px;
+            width: 1000px;
+        }
+
+        .idx a
+        {
+            color: #14497f;
+            font-size: 20px;
+            font-weight:bold;
+            text-decoration:none;
+        }
+
+        .idx a:hover
+        {
+            color: #404244;
+            transition: 0.15s ease-in-out;
+            text-decoration:none;
+        }
+        .idx small
+        {
+            position: absolute;
+            bottom: 8px;
+            float: right;
         }
 
     </style>

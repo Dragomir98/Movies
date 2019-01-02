@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Movies;
+use Illuminate\Support\Facades\Storage;
 
 class MoviesController extends Controller
 {
@@ -51,8 +52,28 @@ class MoviesController extends Controller
             'yearOfProduction' => 'required',
             'producer' => 'required',
             'genre' => 'required',
-            'language' => 'required'
+            'language' => 'required',
+            'uploaded_image' => 'image|nullable|max:1999'
         ]);
+
+        //Handle file upload
+        if($request->hasFile('uploaded_image'))
+        {
+            //Get filename with the extension
+            $fileNameWithExt = $request->file('uploaded_image')->getClientOriginalName();
+            //Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //Get just extension
+            $extension = $request->file('uploaded_image')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            //Upload image
+            $path = $request->file('uploaded_image')->storeAs('public/uploaded_images', $fileNameToStore);
+        }
+        else
+            {
+            $fileNameToStore = 'noimage.jpg';
+        }
 
         $movies = new Movies;
         $movies->name = $request->input('name');
@@ -61,6 +82,7 @@ class MoviesController extends Controller
         $movies->genre = $request->input('genre');
         $movies->language = $request->input('language');
         $movies->user_id = auth()->user()->id;
+        $movies->uploaded_image = $fileNameToStore;
         $movies->save();
 
         return redirect('/movies')->with('success', 'Movie created');
@@ -111,13 +133,41 @@ class MoviesController extends Controller
             'language' => 'required'
         ]);
 
+        //Handle file upload
+        if($request->hasFile('uploaded_image'))
+        {
+            //Get filename with the extension
+            $fileNameWithExt = $request->file('uploaded_image')->getClientOriginalName();
+            //Get just filename
+            $fileName = pathinfo($fileNameWithExt, PATHINFO_FILENAME);
+            //Get just extension
+            $extension = $request->file('uploaded_image')->getClientOriginalExtension();
+            //Filename to store
+            $fileNameToStore = $fileName.'_'.time().'.'.$extension;
+            //Upload image
+            $path = $request->file('uploaded_image')->storeAs('public/uploaded_images', $fileNameToStore);
+        }
+
+
+
         $movies = Movies::find($id);
         $movies->name = $request->input('name');
         $movies->yearOfProduction = $request->input('yearOfProduction');
         $movies->producer = $request->input('producer');
         $movies->genre = $request->input('genre');
         $movies->language = $request->input('language');
+        if($request->hasFile('uploaded_image'))
+        {
+            $movies->uploaded_image = $fileNameToStore;
+        }
         $movies->save();
+
+        if ($request->hasFile('uploaded_image')) {
+            if ($movies->uploaded_image != 'noimage.jpg') {
+                Storage::delete('public/uploaded_images/'.$movies->uploaded_image);
+            }
+            $movies->uploaded_image = $fileNameToStore;
+        }﻿;
 
         return redirect('/movies')->with('success', 'Movie updated');
     }
@@ -135,6 +185,12 @@ class MoviesController extends Controller
         if(auth()->user()->id !==$movies->user_id)
         {
             return redirect('/movies')->with('error', 'Unauthorized Page');
+        }
+
+        if($movies->uploaded_image != 'noimage.jpg')
+        {
+            //Delete image
+            Storage::delete('public/uploaded_images/'.$movies->uploaded_image);
         }
 
         $movies->delete();
