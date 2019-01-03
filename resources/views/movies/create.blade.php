@@ -1,8 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-<h1>Create a movie</h1>
-    {!! Form::open(['action' => 'MoviesController@store', 'method' => 'POST']) !!}
+    <h1>Create a movie</h1>
+        <div class="jumbotron">
+        {!! Form::open(['action' => 'MoviesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('name', 'Name')}}
             {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name...'])}}
@@ -23,6 +24,10 @@
             {{Form::label('language', 'Language')}}
             {{Form::text('language', '', ['class' => 'form-control', 'placeholder' => 'Language...'])}}
         </div>
+        <div class="form-group">
+            {{Form::file('uploaded_image')}}
+        </div>
         {{Form::submit('Submit', ['class'=>'brn btn-primary'])}}
-    {!! Form::close() !!}
+        {!! Form::close() !!}
+    </div>
 @endsection

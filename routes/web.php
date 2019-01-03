@@ -25,3 +25,8 @@ Route::resource('movies', 'MoviesController');
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+Route::get('/prod', function ()
+    {
+        return view('producerList');
+    });
