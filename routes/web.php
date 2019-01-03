@@ -28,5 +28,5 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/prod', function ()
     {
-        return view('producerList');
+        return view('producerList', ['movies'=>'']);
     });
