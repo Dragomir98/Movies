@@ -14,7 +14,6 @@ class Movies extends Model
     {
         return $this->belongsTo('App\User');
     }
-
 }
 
 Movies::all();

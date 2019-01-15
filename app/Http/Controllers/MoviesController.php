@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Movies;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Facades\Input;
 
 class MoviesController extends Controller
 {
@@ -15,7 +16,7 @@ class MoviesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
     }
 
     /**
@@ -27,6 +28,25 @@ class MoviesController extends Controller
     {
         $movies = Movies::orderBy('created_at', 'asc')->paginate(10);
         return view('movies.index')->with('movies', $movies);
+    }
+
+    public function search()
+    {
+        $q = Input::get('query');
+        if ($q != "") {
+            $movies = Movies::where('yearOfProduction', 'LIKE', '%' . $q . '%')
+                ->orWhere('name', 'LIKE', '%' . $q . '%')
+                ->orWhere('genre', 'LIKE', '%' . $q . '%')
+                ->orWhere('producer', 'LIKE', '%' . $q . '%')->get()->all();
+            if (count($movies) > 0) {
+                return view('movies.index')->with(['movies' => $movies, 'query' => $q]);
+            } else {
+                return view('movies.index')->with(['message', "No search result found!"]);
+            }
+        }
+        else{
+            return view('movies.index')->with(['message', "Your search is empty!"]);
+        }
     }
 
     /**
@@ -53,7 +73,7 @@ class MoviesController extends Controller
             'producer' => 'required',
             'genre' => 'required',
             'language' => 'required',
-            'uploaded_image' => 'image|nullable|max:1999'
+            'uploaded_image' => 'image|nullable|mimes:jpeg,png,jpg,gif|max:1999'
         ]);
 
         //Handle file upload
