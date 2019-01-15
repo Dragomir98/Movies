@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="jumbotron">
-        <h1>Edit</h1>
+        <h1 class="bighead">Edit</h1>
         {!! Form::open(['action' => ['MoviesController@update', $movie->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
         <div class="form-group">
             {{Form::label('name', 'Name')}}

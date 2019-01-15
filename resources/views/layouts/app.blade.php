@@ -21,15 +21,58 @@
     <style>
         *{font-family: Convergence;}
 
+        body {
+            background-color: #dcdee5;
+        }
+
+        tr
+        {
+            background-color: #3e3f42;
+            color: #ffffff;
+            text-align: center;
+            font-size: 23px;
+        }
+
+        td
+        {
+            background-color: #a6b3db;
+            color: #000000;
+            text-align: center;
+            line-height: 200px;
+            font-size: 23px;
+        }
+
+        td:hover {
+            background-color: #afc1ae;
+        }
+
+        a
+        {
+            color: #000000;
+            font-size: 23px;
+        }
+        td a:hover
+        {
+            text-decoration: none;
+            color: #471099;
+        }
+
         h1
         {
-            padding-top: 40px;
+            padding-top: 50px;
         }
+
+        h3
+        {
+            text-align: center;
+        }
+
 
         small
         {
             color: #494a4c;
         }
+
 
         .cont
         {
@@ -52,12 +95,13 @@
             margin: 20px;
             padding: 5px;
             width: 1000px;
+            font-size: 23px;
         }
 
         .idx a
         {
             color: #14497f;
-            font-size: 20px;
+            font-size: 23px;
             font-weight:bold;
             text-decoration:none;
         }
@@ -73,6 +117,11 @@
             position: absolute;
             bottom: 8px;
             float: right;
+        }
+
+        .bighead
+        {
+            text-align: center;
         }
 
     </style>

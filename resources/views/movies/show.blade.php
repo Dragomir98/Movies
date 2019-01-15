@@ -4,7 +4,7 @@
     <div class="jumbotron">
         <a href="/movies" class="btn btn-outline-info">Go back</a>
 
-        <h1>{{$movie->name}}</h1>
+        <h1 class="bighead">{{$movie->name}}</h1>
         <img style="width:100%" src="/storage/uploaded_images/{{$movie->uploaded_image}}">
         <br><br>
         <div>
