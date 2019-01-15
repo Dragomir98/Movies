@@ -1,14 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="e7fd1b03-fe4b-4273-adf9-e658c492d6be" name="Default Changelist" comment="Added DB seeder">
-      <change beforePath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Http/Controllers/MoviesController.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Movie.php" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/Movies.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/Movies.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/User.php" beforeDir="false" afterPath="$PROJECT_DIR$/app/User.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/config/app.php" beforeDir="false" afterPath="$PROJECT_DIR$/config/app.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/routes/web.php" beforeDir="false" afterPath="$PROJECT_DIR$/routes/web.php" afterDir="false" />
-    </list>
+    <list default="true" id="e7fd1b03-fe4b-4273-adf9-e658c492d6be" name="Default Changelist" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -53,7 +46,7 @@
           <entry key="env" value="43" />
           <entry key="md" value="938" />
           <entry key="php" value="13154" />
-          <entry key="txt" value="332" />
+          <entry key="txt" value="471" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
@@ -61,7 +54,7 @@
           <entry key="Blade" value="8048" />
           <entry key="Markdown" value="938" />
           <entry key="PHP" value="5106" />
-          <entry key="PLAIN_TEXT" value="375" />
+          <entry key="PLAIN_TEXT" value="514" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
@@ -434,7 +427,7 @@
       <workItem from="1546957402101" duration="6328000" />
       <workItem from="1547466750873" duration="1292000" />
       <workItem from="1547481762802" duration="5163000" />
-      <workItem from="1547586481644" duration="4517000" />
+      <workItem from="1547586481644" duration="4779000" />
     </task>
     <task id="LOCAL-00001" summary="Initial commit">
       <created>1545586148304</created>
@@ -534,11 +527,39 @@
       <option name="project" value="LOCAL" />
       <updated>1547591862901</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added new providers and aliases">
+      <created>1547592001602</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1547592001602</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Controller with main functions">
+      <created>1547592040944</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1547592040944</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Updated routes">
+      <created>1547592074910</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1547592074910</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Added lists with genres and producers">
+      <created>1547592142034</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1547592142034</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="165464000" />
+    <option name="totallyTimeSpent" value="165726000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1616" height="886" extended-state="6" />
@@ -585,7 +606,11 @@
     <MESSAGE value="Added Readme file" />
     <MESSAGE value="Added DB seeder" />
     <MESSAGE value="Added CRUD" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added CRUD" />
+    <MESSAGE value="Added new providers and aliases" />
+    <MESSAGE value="Controller with main functions" />
+    <MESSAGE value="Updated routes" />
+    <MESSAGE value="Added lists with genres and producers" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added lists with genres and producers" />
   </component>
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/database/migrations/2018_12_23_152112_movies.php" />
