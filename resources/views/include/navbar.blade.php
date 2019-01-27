@@ -1,8 +1,10 @@
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
     <div class="container">
+        <div class="navbar-header">
         <a class="navbar-brand" href="{{ url('/') }}">
             {{ config('app.name', 'Laravel') }}
         </a>
+        </div>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -14,7 +16,10 @@
                     <a class="nav-link" href="/movies">Movies <span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/movies/create">Create Movie <span class="sr-only">(current)</span></a>
+                    <a class="nav-link" href="/producers">Producers<span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/genres">Genres<span class="sr-only">(current)</span></a>
                 </li>
             </ul>
 

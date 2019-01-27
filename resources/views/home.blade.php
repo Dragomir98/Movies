@@ -15,19 +15,23 @@
                     @endif
                     You are logged in!
                     <hr>
-                    <a href="/movies/create" class="btn btn-primary">Create a movie</a>
+                        <div align="center">
+                            <a href="/movies/create" class="btn btn-primary">Add a movie</a>
+                            <a href="/genres/create" class="btn btn-primary">Add a genre</a>
+                            <a href="/producers/create" class="btn btn-primary">Add a producer</a>
+                        </div>
                     <hr>
                     @if(count($movies) > 0)
-                        <table class="table table-striped">
+                        <table class="indextable">
                             <tr>
-                                <th>Name</th>
+                                <th>Movie name</th>
                                 <th></th>
                                 <th></th>
                             </tr>
                             @foreach($movies as $movie)
                                 <tr>
                                     <td>{{$movie->name}}</td>
-                                    <td><a href="/movies/{{$movie->id}}/edit" class="btn btn-outline-primary">Edit</a></td>
+                                    <td><a href="/movies/{{$movie->id}}/edit" class="btn btn-primary">Edit</a></td>
                                     <td>
                                         {!! Form::open(['action' => ['MoviesController@destroy', $movie->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
                                         {{Form::hidden('_method', 'DELETE')}}

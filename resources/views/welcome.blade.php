@@ -69,7 +69,14 @@
         <div class="container">
             <div class="jumbotron text-center">
                 <h1>Welcome!</h1>
-                <a class="btn btn-primary btn-lg" role="button">Login</a> <a class="btn btn-success btn-lg" href="/register" role="button">Register</a>
+                @guest
+                <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> <a class="btn btn-success btn-lg" href="/register" role="button">Register</a>
+                @endguest
+                @if(!Auth::guest())
+                <h1>Manage</h1>
+                    <a class="btn btn-info" href="genres/create">Genres</a>
+                    <a class="btn btn-info" href="producers/create">Producer</a>
+                @endif
             </div>
         </div>
     </body>

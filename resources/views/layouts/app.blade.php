@@ -19,10 +19,27 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <style>
+        .navbar-brand {
+            position: relative;
+            font-size: 30px;
+            background-size: contain;
+        }
+        .navbar-brand:hover
+        {
+            background-color: #5e5858;
+            border-radius: 4px;
+            transition: ease-in-out 0.15s;
+        }
+
         *{font-family: Convergence;}
 
         body {
             background-color: #dcdee5;
+        }
+
+        th
+        {
+            background-color: #3864aa;
         }
 
         tr
@@ -33,28 +50,9 @@
             font-size: 23px;
         }
 
-        td
-        {
-            background-color: #a6b3db;
-            color: #000000;
-            text-align: center;
-            line-height: 200px;
-            font-size: 23px;
-        }
-
-        td:hover {
-            background-color: #afc1ae;
-        }
-
         a
         {
-            color: #000000;
             font-size: 23px;
-        }
-        td a:hover
-        {
-            text-decoration: none;
-            color: #471099;
         }
 
         h1
@@ -85,6 +83,31 @@
             width: 100%;
             max-width: 300px;
             height: auto;
+        }
+
+        .indextable
+        {
+            color: #ffffff;
+            width: 100%;
+            border-radius: 4px;
+            margin-bottom: 20px;
+        }
+
+        .showtd
+        {
+            background-color: #dcdee5;
+        }
+
+        .indextable td
+        {
+            background-color: #ceb690;
+            color: #000000;
+            text-align: center;
+            font-size: 23px;
+        }
+
+        .indextable td:hover {
+            background-color: #d8c5ad;
         }
 
         .idx
@@ -131,6 +154,9 @@
         <main class="py-4">
             @include('include.navbar')
             <div class="container">
+                <br>
+                <br>
+                <br>
                 @include('include.messages')
                 @yield('content')
             </div>
