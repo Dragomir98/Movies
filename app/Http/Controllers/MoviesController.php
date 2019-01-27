@@ -195,13 +195,6 @@ class MoviesController extends Controller
         }
         $movies->save();
 
-        /*if ($request->hasFile('uploaded_image')) {
-            if ($movies->uploaded_image != 'noimage.jpg') {
-                Storage::delete('public/uploaded_images/'.$movies->uploaded_image);
-            }
-            $movies->uploaded_image = $fileNameToStore;
-        }﻿;*/
-
         return redirect('/movies')->with('success', 'Movie updated');
     }
 
