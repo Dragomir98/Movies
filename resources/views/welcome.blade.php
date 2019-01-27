@@ -68,15 +68,16 @@
     <body>
         <div class="container">
             <div class="jumbotron text-center">
-                <h1>Welcome!</h1>
+                <h1>Welcome! </h1>
+                <img class="welcomeimage" src="https://steamuserimages-a.akamaihd.net/ugc/913545907613508678/0BDED34621A9B949D0BCB5D66149F454F03F7843/">
+                @if(!Auth::guest())
+                    <h1>Check your profile</h1>
+                    <a class="btn btn-dark" href="/home">Profile</a>
+                    @endif
                 @guest
+                    <h1>Login to be able to add movies based on your preference!</h1>
                 <a class="btn btn-primary btn-lg" href="/login" role="button">Login</a> <a class="btn btn-success btn-lg" href="/register" role="button">Register</a>
                 @endguest
-                @if(!Auth::guest())
-                <h1>Manage</h1>
-                    <a class="btn btn-info" href="genres/create">Genres</a>
-                    <a class="btn btn-info" href="producers/create">Producer</a>
-                @endif
             </div>
         </div>
     </body>

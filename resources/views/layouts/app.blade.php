@@ -34,7 +34,7 @@
         *{font-family: Convergence;}
 
         body {
-            background-color: #dcdee5;
+            background-image: url("http://kentarastirmalari.org/zem.jpg");
         }
 
         th
@@ -83,6 +83,12 @@
             width: 100%;
             max-width: 300px;
             height: auto;
+        }
+
+        .welcometable
+        {
+            border: 2px solid #3a537a;
+            border-radius: 4px;
         }
 
         .indextable
@@ -145,6 +151,14 @@
         .bighead
         {
             text-align: center;
+        }
+
+        .welcomeimage
+        {
+            width: auto;
+            height: 280px;
+            margin-bottom: 20px;
+            border-radius: 3px;
         }
 
     </style>

@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <a href="/movies" class="btn btn-outline-info">Go back</a>
+    <div class="jumbotron">
+    <a href="/movies" class="btn btn-info">Go back</a>
     <h1 class="bighead">Create a movie</h1>
-        <div class="jumbotron">
         {!! Form::open(['action' => 'MoviesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
             {{csrf_field()}}
         <div class="form-group">
