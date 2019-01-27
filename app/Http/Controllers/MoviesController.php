@@ -3,10 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Genres;
 use App\Movies;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Input;
-
+use Illuminate\Support\Facades\DB;
 class MoviesController extends Controller
 {
     /**
@@ -16,7 +17,7 @@ class MoviesController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('auth', ['except' => ['index', 'show', 'search']]);
+        $this->middleware('auth', ['except' => ['index', 'show', 'search', 'admin']]);
     }
 
     /**
@@ -56,7 +57,13 @@ class MoviesController extends Controller
      */
     public function create()
     {
-        return view('movies.create');
+        $genreList = \DB::table('genres')->pluck('name', 'name');
+        $genreList = ['0' => 'Select a genre'] + collect($genreList)->toArray();
+
+        $producerList = \DB::table('producers')->pluck('name', 'name');
+        $producerList = ['0' => 'Select a producer'] + collect($producerList)->toArray();
+
+        return view('movies.create')->with('genreList', $genreList)->with('producerList', $producerList);
     }
 
     /**
@@ -68,12 +75,12 @@ class MoviesController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|min:2|max:50',
             'yearOfProduction' => 'required',
-            'producer' => 'required',
-            'genre' => 'required',
-            'language' => 'required',
-            'uploaded_image' => 'image|nullable|mimes:jpeg,png,jpg,gif|max:1999'
+            'producer' => 'required|not_in:0',
+            'genre' => 'required|not_in:0',
+            'language' => 'required|min:2|max:20',
+            'uploaded_image' => 'image|mimes:jpeg,png,jpg,gif|max:2048'
         ]);
 
         //Handle file upload
@@ -128,12 +135,18 @@ class MoviesController extends Controller
      */
     public function edit($id)
     {
+        $genreList = \DB::table('genres')->pluck('name', 'name');
+        $genreList = ['0' => 'Select a genre'] + collect($genreList)->toArray();
+
+        $producerList = \DB::table('producers')->pluck('name', 'name');
+        $producerList = ['0' => 'Select a producer'] + collect($producerList)->toArray();
+
         $movies = Movies::find($id);
         if(auth()->user()->id !==$movies->user_id)
         {
             return redirect('/movies')->with('error', 'Unauthorized Page');
         }
-        return view('movies.edit')->with('movie', $movies);
+        return view('movies.edit')->with('movie', $movies)->with('genreList', $genreList)->with('producerList', $producerList);
     }
 
     /**
@@ -146,11 +159,11 @@ class MoviesController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request, [
-            'name' => 'required',
+            'name' => 'required|min:2|max:50',
             'yearOfProduction' => 'required',
-            'producer' => 'required',
-            'genre' => 'required',
-            'language' => 'required'
+            'producer' => 'required|not_in:0',
+            'genre' => 'required|not_in:0',
+            'language' => 'required|min:2|max:20',
         ]);
 
         //Handle file upload
@@ -182,12 +195,12 @@ class MoviesController extends Controller
         }
         $movies->save();
 
-        if ($request->hasFile('uploaded_image')) {
+        /*if ($request->hasFile('uploaded_image')) {
             if ($movies->uploaded_image != 'noimage.jpg') {
                 Storage::delete('public/uploaded_images/'.$movies->uploaded_image);
             }
             $movies->uploaded_image = $fileNameToStore;
-        }﻿;
+        }﻿;*/
 
         return redirect('/movies')->with('success', 'Movie updated');
     }

@@ -1,9 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <a href="/movies" class="btn btn-outline-info">Go back</a>
     <h1 class="bighead">Create a movie</h1>
         <div class="jumbotron">
         {!! Form::open(['action' => 'MoviesController@store', 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+            {{csrf_field()}}
         <div class="form-group">
             {{Form::label('name', 'Name')}}
             {{Form::text('name', '', ['class' => 'form-control', 'placeholder' => 'Name...'])}}
@@ -13,12 +15,12 @@
             {{Form::text('yearOfProduction', '', ['class' => 'form-control', 'placeholder' => 'Year...'])}}
         </div>
         <div class="form-group">
-            {{Form::label('producer', 'Producer')}}
-            {{Form::text('producer', '', ['class' => 'form-control', 'placeholder' => 'Name of the producer...'])}}
+            {{Form::label('producer', 'Producers')}}
+            {!! Form::select('producer', $producerList, null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {{Form::label('genre', 'Genre')}}
-            {{Form::text('genre', '', ['class' => 'form-control', 'placeholder' => 'Genre...'])}}
+            {{Form::label('genre', 'Genres')}}
+            {!! Form::select('genre', $genreList, null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {{Form::label('language', 'Language')}}

@@ -21,8 +21,8 @@
     @if(!Auth::guest())
         @if(Auth::user()->id == $movie->user_id)
             <table>
-            <td><a href="/movies/{{$movie->id}}/edit" class="btn btn-outline-primary">Edit</a></td>
-            <td>
+            <td class="showtd"><a href="/movies/{{$movie->id}}/edit" class="btn btn-primary">Edit</a></td>
+            <td class="showtd">
             {!! Form::open(['action' => ['MoviesController@destroy', $movie->id], 'method' => 'POST', 'class' => 'pull-right']) !!}
                 {{Form::hidden('_method', 'DELETE')}}
                 {{Form::submit('Delete', ['class' => 'btn btn-danger'])}}

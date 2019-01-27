@@ -2,8 +2,10 @@
 
 @section('content')
     <div class="jumbotron">
+        <a href="/movies" class="btn btn-outline-info">Go back</a>
         <h1 class="bighead">Edit</h1>
         {!! Form::open(['action' => ['MoviesController@update', $movie->id], 'method' => 'POST', 'enctype' => 'multipart/form-data']) !!}
+        {{csrf_field()}}
         <div class="form-group">
             {{Form::label('name', 'Name')}}
             {{Form::text('name', $movie->name, ['class' => 'form-control', 'placeholder' => 'Name...'])}}
@@ -13,12 +15,12 @@
             {{Form::text('yearOfProduction', $movie->yearOfProduction, ['class' => 'form-control', 'placeholder' => 'Year...'])}}
         </div>
         <div class="form-group">
-            {{Form::label('producer', 'Producer')}}
-            {{Form::text('producer', $movie->producer, ['class' => 'form-control', 'placeholder' => 'Name of the producer...'])}}
+            {{Form::label('producer', 'Producers')}}
+            {!! Form::select('producer', $producerList, null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
-            {{Form::label('genre', 'Genre')}}
-            {{Form::text('genre', $movie->genre, ['class' => 'form-control', 'placeholder' => 'Genre...'])}}
+            {{Form::label('genre', 'Genres')}}
+            {!! Form::select('genre', $genreList, null, ['class' => 'form-control']) !!}
         </div>
         <div class="form-group">
             {{Form::label('language', 'Language')}}

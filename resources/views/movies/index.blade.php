@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
+    <a href="/movies/create" class="btn btn-primary">Add a movie</a>
     <h1 class="bighead">Movies</h1>
-
     <div class="flex-center position-ref full-height">
         <div class="Search-form">
             <form class="" action="{{ URL::to('/search') }}" method="get">
@@ -23,21 +23,27 @@
         @foreach($movies as $movie)
             <div>
                 <div class="row">
-                    <table class="table table-striped table-bordered table-hover">
+                    <table class="indextable">
                         <thead>
                         <tr>
-                            <th>Image</th>
-                            <th>Name of movie</th>
-                            <th>Date of creation</th>
-                            <th>By user</th>
+                            <th class="col-sm-2">Image</th>
+                            <th class="col-sm-2">Production year</th>
+                            <th class="col-sm-3">Movie</th>
+                            <th class="col-sm-2">Producer</th>
+                            <th class="col-sm-1">Genre</th>
+                            <th class="col-sm-1">User</th>
+                            <th class="col-sm-1"></th>
                         </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td> <img class="resp" src="/storage/uploaded_images/{{$movie->uploaded_image}}"></td>
-                                <td> <a class="lead" href="/movies/{{$movie->id}}">{{$movie->name}} (Click to view or edit)</a></td>
-                                <td> {{$movie->created_at}} </td>
-                                <td> {{$movie->user->name}} </td>
+                                <td class="col-sm-2"> <img class="resp" src="/storage/uploaded_images/{{$movie->uploaded_image}}"></td>
+                                <td class="col-sm-2"> {{$movie->yearOfProduction}}</td>
+                                <td class="col-sm-3"> {{$movie->name}} </td>
+                                <td class="col-sm-2"> {{$movie->producer}} </td>
+                                <td class="col-sm-1"> {{$movie->genre}}</td>
+                                <td class="col-sm-1"> {{$movie->user->name}} </td>
+                                <td class="col-sm-1"> <a class="btn btn-info" href="/movies/{{$movie->id}}">Details</a></td>
                             </tr>
                         </tbody>
                     </table>
