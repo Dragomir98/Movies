@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddUserIdToMovies extends Migration
+class CreateGenresTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,10 @@ class AddUserIdToMovies extends Migration
      */
     public function up()
     {
-        Schema::table('movies', function (Blueprint $table) {
-            $table->integer('user_id');
+        Schema::create('genres', function (Blueprint $table) {
+            $table->increments('id');
+            $table->string('name', '32');
+            $table->timestamps();
         });
     }
 
@@ -25,8 +27,6 @@ class AddUserIdToMovies extends Migration
      */
     public function down()
     {
-        Schema::table('movies', function (Blueprint $table) {
-            $table->dropColumn('user_id');
-        });
+        Schema::dropIfExists('genres');
     }
 }

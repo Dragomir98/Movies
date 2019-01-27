@@ -3,8 +3,6 @@
 use Illuminate\Support\Facades\Input;
 use App\Movies;
 
-//Route::get('/', 'PagesController@index');
-//Route::get('/about', 'PagesController@about');
 Route::get('/', function ()
     {
         return view('welcome');
@@ -13,22 +11,19 @@ Route::get('/', function ()
 Auth::routes();
 
 Route::resource('movies', 'MoviesController');
+Route::resource('producers', 'ProducersController');
+Route::resource('genres', 'GenresController');
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
-Route::get('/prod', function ()
-    {
-        $movies = DB::table('movies')->get();
-        return view('producerList', ['movies'=>$movies]);
-    });
-
-Route::get('/gen', function ()
-    {
-        $movies = DB::table('movies')->get();
-        return view('genreList', ['movies'=>$movies]);
-    });
-
-
 Route::get('/search', 'MoviesController@search')->name('movies');
+
+Route::group(['middleware' => ['auth', 'admin']], function() {
+    Route::get('/admin', function (){
+        $movies = DB::table('movies')->get();
+        $users = DB::table('users')->get();
+        return view('admin', ['movies'=>$movies], ['users'=>$users]);
+    });
+});
